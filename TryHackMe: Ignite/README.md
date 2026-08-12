@@ -44,6 +44,6 @@ We now have our interactive shell and we are ready for the flags. I changed dire
 
 Using the ```whoami``` command we see that we are www-data. And we are still looking for the root.txt flag. So we need to escalate privileges. I ran the typical ```sudo -l``` and ```find / -perm -4000 -type f 2>/dev/null``` to enumerate sudo permissions and SUID binaries that could give us potential privilege escalation paths. However, I did not find anything of value doing this. But I did remember the what the website said about the database (if installed). This would give us the username and password which could potentially give us root access if credentials were reused. I searched around and found the database configuration. It's in the directory: /var/www/html/fuel/application/config/ and we are specifically looking at the database.php. And after we use cat to view the database file we find a username and password.
 
-<img width="489" height="132" alt="2026-08-12_11-41" src="https://github.com/user-attachments/assets/6bd668a6-7921-4a70-aac7-8dbe5479aa94" />
+<img width="382" height="293" alt="2026-08-12_11-39_1" src="https://github.com/user-attachments/assets/b78bfe8e-cbd5-4019-83a4-4c57d13e8815" />
 
 Simply ```su``` and enter the password. And this works! Then navigate to the /root directory and we find the final flag!
